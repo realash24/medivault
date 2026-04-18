@@ -5,8 +5,7 @@ from typing import Optional
 def calculate_age(dob: Optional[date]) -> Optional[int]:
     if not dob:
         return None
-    from datetime import date as today_date
-    today = today_date.today()
+    today = date.today()
     return today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
 
 
