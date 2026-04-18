@@ -1,5 +1,5 @@
 import io
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from typing import Any, Dict, List, Optional
 
 
@@ -37,7 +37,7 @@ def generate_summary_pdf(data: Dict[str, Any]) -> bytes:
     person = data.get("person", {})
     name = f"{person.get('given_names', '')} {person.get('family_name', '')}".strip() or "Unknown"
     story.append(Paragraph(f"MediVault Health Summary — {name}", title_style))
-    story.append(Paragraph(f"Generated: {datetime.utcnow().strftime('%d %b %Y %H:%M UTC')}", normal))
+    story.append(Paragraph(f"Generated: {datetime.now(timezone.utc).strftime('%d %b %Y %H:%M UTC')}", normal))
     story.append(HRFlowable(width="100%", thickness=1, color=colors.grey))
     story.append(Spacer(1, 6))
 
